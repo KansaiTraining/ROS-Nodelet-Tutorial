@@ -29,7 +29,24 @@ Take a break... Now we are going to build a package
 
 9. Create a Package (in our case for the nodelet) by going to src (*cd src*) and typing *catkin_create_pkg nodelet_tutorial_math roscpp pluginlib std_msgs* 
 
+10. cd to the previous directory (*cd ..*) and run *catkin_make* again
 
+You have your package created. For some reason (TO INVESTIGATE) when you do all of this the folders created are locked. You will need to edit add or delete
+these files so you should change permisions to chmod 777 to the folders or files you require
+
+One thing to notice. **You need to run these commands from inside the container**. However notice that the container is synchronized with the contents of the folder created in step 2 *from outside the container*. So you could use your editor of choice to write your code inside those folders and it will be reflected inside the container as well. 
+
+11. Go to the src folder *inside* the package (not only the one in the workspace but the one inside the package *nodelet_tutorial_math*) and write your nodelet 
+    This nodelet is a class derived from *nodelet::Nodelet* and it has to have a public constructor withouth parameters and private methods: One virtual called *onInit* and if the nodelet has a subscriber another called *callback* (which is going to be the nodelet subscriber callback).
+    It also could have all things a node can have, such as a Publisher or a Subscriber
+
+  The *onInit* method has to have a *ros::NodeHandle* and it can get parameters,initialize publishers, subscribers, etc.
+  
+  One important thing. The nodelet has to have outside of the class the following declaration
+  ```
+  PLUGINLIB_EXPORT_CLASS(<namespace::Classname>, nodelet::Nodelet)
+  ```
+12. 
 
 
 
