@@ -50,3 +50,6 @@ One thing to notice. **You need to run these commands from inside the container*
 
 
 
+Putting everything like the tutorial and executing
+
+
